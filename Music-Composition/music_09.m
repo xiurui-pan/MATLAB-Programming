@@ -54,7 +54,7 @@ hold off;
 
 % 下面对每一节拍进行FFT，分析音调频率
 % 切分每个音符
-EPS = 500;
+EPS = 600;
 notes = sort(notes);
 metre = zeros(12000, length(notes));
 metre(1:notes(2) - EPS, 1) = x(1:notes(2) - EPS);
@@ -66,7 +66,7 @@ end
 metre(1:length(x) - notes(end) + 1, i + 1) = x(notes(end) - EPS:end - EPS);
 
 %for i = length(notes):-1:1
-i = 6;
+i = 19;
     if i == 1
         LL = notes(2) - EPS;
     elseif i == length(notes)
@@ -93,7 +93,7 @@ i = 6;
     % spec = spec / max(spec);
     mmm = max(spec);
     for a = 1:length(spec)
-        if(spec(a) < 0.1*mmm)
+        if(spec(a) < 0.01*mmm)
             spec(a) = 0;
         end
     end
