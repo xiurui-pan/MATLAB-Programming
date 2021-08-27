@@ -137,7 +137,8 @@ function volume_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
-
+global volume;
+volume = get(hObject, 'Value')
 
 % --- Executes during object creation, after setting all properties.
 function volume_CreateFcn(hObject, eventdata, handles)
@@ -149,6 +150,9 @@ function volume_CreateFcn(hObject, eventdata, handles)
 if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor',[.9 .9 .9]);
 end
+set(hObject, 'Max', 5);
+set(hObject, 'Min', 0);
+set(hObject, 'Value', 1)
 
 
 % --- Executes on button press in start.
@@ -156,8 +160,10 @@ function start_Callback(hObject, eventdata, handles)
 % hObject    handle to start (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+global volume;
 global notes;
 global notes_nums;
+disp(volume);
 
 notes = repmat(struct('pitch', '0C1', 'beat', 8), 1024, 1);
 text_ = get(handles.input_notes, 'String');
@@ -167,6 +173,5 @@ for i = 1:notes_nums
     notes(i).pitch = text_(i, 1:3);
     notes(i).beat  = fix(str2double(text_(i, 5)));
 end
-disp(notes_nums);
 
 music_12();

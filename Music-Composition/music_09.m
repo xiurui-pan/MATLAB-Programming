@@ -24,8 +24,8 @@ y3 = diff(y2);
 % title('差分提取变化点');
 
 y4 = max(y3, 0);
-figure(40);
-plot(y4);
+% figure(40);
+% plot(y4);
 title('半波整流取正值 + 自动选峰定节奏');
 
 hold on;
@@ -49,12 +49,12 @@ for i = 1:iter_time
 end
 
 notes_value = y4(notes);
-plot(notes, notes_value, 'o');
+% plot(notes, notes_value, 'o');
 hold off;
 
 % 下面对每一节拍进行FFT，分析音调频率
 % 切分每个音符
-EPS = 600;
+EPS = 500;
 notes = sort(notes);
 metre = zeros(12000, length(notes));
 metre(1:notes(2) - EPS, 1) = x(1:notes(2) - EPS);
@@ -66,7 +66,7 @@ end
 metre(1:length(x) - notes(end) + 1, i + 1) = x(notes(end) - EPS:end - EPS);
 
 %for i = length(notes):-1:1
-i = 19;
+i = 16;
     if i == 1
         LL = notes(2) - EPS;
     elseif i == length(notes)
