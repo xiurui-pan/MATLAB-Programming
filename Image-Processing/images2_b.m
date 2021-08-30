@@ -1,6 +1,7 @@
 clear
 load('jpegcodes.mat');
 load('JpegCoeff.mat');
+load('hall.mat');
 
 DCT = zeros(64, height*width/64);
 DClen = length(DCcode);
@@ -51,7 +52,7 @@ i = 1; % AC编码的迭代器
 j = 1; % 解码后的块号
 k = 1; % 在块中的位置
 while i <= AClen
-    if ACcode(i:i+3) == EOB
+    if (i <= AClen - 3) & (ACcode(i:i+3) == EOB)
         j = j + 1;
         i = i + 4;
         k = 1;
@@ -105,6 +106,10 @@ for i = 1:height/8
 end
 recover = uint8(recover);
 imshow(recover);
+
+err = double(hall_gray) - double(recover);
+MSE = mean(mean(err .* err));
+PSNR = 10 * log10(255 * 255 / MSE)
 
 function [b] = izigzag(a)
     ord = [1,2,6,7,15,16,28,29;
