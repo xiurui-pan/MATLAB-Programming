@@ -138,7 +138,7 @@ function volume_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'Value') returns position of slider
 %        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
 global volume;
-volume = get(hObject, 'Value')
+volume = get(hObject, 'Value');
 
 % --- Executes during object creation, after setting all properties.
 function volume_CreateFcn(hObject, eventdata, handles)
@@ -150,10 +150,11 @@ function volume_CreateFcn(hObject, eventdata, handles)
 if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor',[.9 .9 .9]);
 end
+global volume;
 set(hObject, 'Max', 5);
 set(hObject, 'Min', 0);
 set(hObject, 'Value', 1)
-
+volume = 1;
 
 % --- Executes on button press in start.
 function start_Callback(hObject, eventdata, handles)
