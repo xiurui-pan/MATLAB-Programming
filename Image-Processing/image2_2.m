@@ -3,6 +3,7 @@ img = load('hall.mat');
 p = double(img.hall_gray(1:100, 1:100));
 ans1 = DCT2(p);
 ans2 = dct2(p);
+max(max(ans1-ans2))
 
 function C = DCT2(P)
 

@@ -1,7 +1,9 @@
 clear
-load('hall.mat');
+load('snow.mat');
 load('JpegCoeff.mat');
-img = double(hall_gray);
+
+height = m;
+width = n;
 
 [m, n] = size(img);
 DCT = zeros(64, m*n/64);
@@ -68,7 +70,7 @@ for i = 1:length(diff_coding)
     ACcode = cat(2, ACcode, EOB);
 end
 
-height = 120;
-width = 168;
+DCcode = logical(DCcode);
+ACcode = logical(ACcode);
 
 save('jpegcodes.mat', 'DCcode', 'ACcode', 'height', 'width');
